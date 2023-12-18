@@ -1,0 +1,264 @@
+mysql> create database school;
+ERROR 1007 (HY000): Can't create database 'school'; database exists
+mysql> create database teacher;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use teacher;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> create table teacher(Teacher_id int, Name varchar(50), Department varchar(50), Date_of_admission date, Salary double(10,2), Gender varchar(25));
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+mysql> insert into teacher(5001, 'Abinesh', 'English', '2023-01-05', 15999, 'Male'),(5002, 'Rajesh', 'Tamil', '2023-02-15', 18999, 'Male'),(5003, 'Santhosh', 'Maths', '2023-10-15', 15599, 'Male'),(5004, 'Raj', 'Social', '2023-12-25', 12999, 'Male'),(5005, 'Gowtham', 'History', '2022-02-28', 10999, 'Male'),(5006, 'Sanjay', 'Commerce', '2022-02-08', 16599, 'Male'),(5007, 'Sanjana', 'Biology', '2022-91-08', 14999, 'Female'),(5008, 'Anu', 'Acoounts', '2023-08-30', 21999, 'Female'),(5009, 'Dhivya', 'CS', '2023-05-11', 25999, 'Female'),(5010, 'Priya', 'Physics', '2022-01-18', 22099, 'Female');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5001, 'Abinesh', 'English', '2023-01-05', 15999, 'Male'),(5002, 'Rajesh', 'Tamil' at line 1
+mysql> insert into teacher values(5001, 'Abinesh', 'English', '2023-01-05', 15999, 'Male'),(5002, 'Rajesh', 'Tamil', '2023-02-15', 18999, 'Male'),(5003, 'Santhosh', 'Maths', '2023-10-15', 15599, 'Male'),(5004, 'Raj', 'Social', '2023-12-25', 12999, 'Male'),(5005, 'Gowtham', 'History', '2022-02-28', 10999, 'Male'),(5006, 'Sanjay', 'Commerce', '2022-02-08', 16599, 'Male'),(5007, 'Sanjana', 'Biology', '2022-91-08', 14999, 'Female'),(5008, 'Anu', 'Acoounts', '2023-08-30', 21999, 'Female'),(5009, 'Dhivya', 'CS', '2023-05-11', 25999, 'Female'),(5010, 'Priya', 'Physics', '2022-01-18', 22099, 'Female');
+ERROR 1292 (22007): Incorrect date value: '2022-91-08' for column 'Date_of_admission' at row 7
+mysql> insert into teacher values(5001, 'Abinesh', 'English', '2023-01-05', 15999, 'Male'),(5002, 'Rajesh', 'Tamil', '2023-02-15', 18999, 'Male'),(5003, 'Santhosh', 'Maths', '2023-10-15', 15599, 'Male'),(5004, 'Raj', 'Social', '2023-12-25', 12999, 'Male'),(5005, 'Gowtham', 'History', '2022-02-28', 10999, 'Male'),(5006, 'Sanjay', 'Commerce', '2022-02-08', 16599, 'Male'),(5007, 'Sanjana', 'Biology', '2022-01-08', 14999, 'Female'),(5008, 'Anu', 'Acoounts', '2023-08-30', 21999, 'Female'),(5009, 'Dhivya', 'CS', '2023-05-11', 25999, 'Female'),(5010, 'Priya', 'Physics', '2022-01-18', 22099, 'Female');
+Query OK, 10 rows affected (0.00 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from teacher;
++------------+----------+------------+-------------------+----------+--------+
+| Teacher_id | Name     | Department | Date_of_admission | Salary   | Gender |
++------------+----------+------------+-------------------+----------+--------+
+|       5001 | Abinesh  | English    | 2023-01-05        | 15999.00 | Male   |
+|       5002 | Rajesh   | Tamil      | 2023-02-15        | 18999.00 | Male   |
+|       5003 | Santhosh | Maths      | 2023-10-15        | 15599.00 | Male   |
+|       5004 | Raj      | Social     | 2023-12-25        | 12999.00 | Male   |
+|       5005 | Gowtham  | History    | 2022-02-28        | 10999.00 | Male   |
+|       5006 | Sanjay   | Commerce   | 2022-02-08        | 16599.00 | Male   |
+|       5007 | Sanjana  | Biology    | 2022-01-08        | 14999.00 | Female |
+|       5008 | Anu      | Acoounts   | 2023-08-30        | 21999.00 | Female |
+|       5009 | Dhivya   | CS         | 2023-05-11        | 25999.00 | Female |
+|       5010 | Priya    | Physics    | 2022-01-18        | 22099.00 | Female |
++------------+----------+------------+-------------------+----------+--------+
+10 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from teacher where Department = 'Biology';
++------------+---------+------------+-------------------+----------+--------+
+| Teacher_id | Name    | Department | Date_of_admission | Salary   | Gender |
++------------+---------+------------+-------------------+----------+--------+
+|       5007 | Sanjana | Biology    | 2022-01-08        | 14999.00 | Female |
++------------+---------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from teacher where Department = 'CS';
++------------+--------+------------+-------------------+----------+--------+
+| Teacher_id | Name   | Department | Date_of_admission | Salary   | Gender |
++------------+--------+------------+-------------------+----------+--------+
+|       5009 | Dhivya | CS         | 2023-05-11        | 25999.00 | Female |
++------------+--------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> update teacher set Name='Harshini' where Teacher_id=5005;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update teacher set Department='CS' where Teacher_id=5001;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from teacher where Department = 'CS';
++------------+---------+------------+-------------------+----------+--------+
+| Teacher_id | Name    | Department | Date_of_admission | Salary   | Gender |
++------------+---------+------------+-------------------+----------+--------+
+|       5001 | Abinesh | CS         | 2023-01-05        | 15999.00 | Male   |
+|       5009 | Dhivya  | CS         | 2023-05-11        | 25999.00 | Female |
++------------+---------+------------+-------------------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from teacher where Department = 'History';
++------------+----------+------------+-------------------+----------+--------+
+| Teacher_id | Name     | Department | Date_of_admission | Salary   | Gender |
++------------+----------+------------+-------------------+----------+--------+
+|       5005 | Harshini | History    | 2022-02-28        | 10999.00 | Male   |
++------------+----------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from teacher where Department = 'History', Gender='Female';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', Gender='Female'' at line 1
+mysql> select name from teacher where Department = 'History', Gender='Female';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', Gender='Female'' at line 1
+mysql> select name from teacher where Department = 'History' and Gender='Female';
+Empty set (0.00 sec)
+
+mysql> update teacher set Gender='Female' where Teacher_id=5005;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from teacher where Department = 'History';
++------------+----------+------------+-------------------+----------+--------+
+| Teacher_id | Name     | Department | Date_of_admission | Salary   | Gender |
++------------+----------+------------+-------------------+----------+--------+
+|       5005 | Harshini | History    | 2022-02-28        | 10999.00 | Female |
++------------+----------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> select * from teacher where Department = 'History', Gender= 'Female';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', Gender= 'Female'' at line 1
+mysql> select Department='History', Gender='Female' from teacher;
++----------------------+-----------------+
+| Department='History' | Gender='Female' |
++----------------------+-----------------+
+|                    0 |               0 |
+|                    0 |               0 |
+|                    0 |               0 |
+|                    0 |               0 |
+|                    1 |               1 |
+|                    0 |               0 |
+|                    0 |               1 |
+|                    0 |               1 |
+|                    0 |               1 |
+|                    0 |               1 |
++----------------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Name, Date_of_admission from teacher ORDER BY Date_of_admission ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from teacher ORDER BY Date_of_admission ASC' at line 1
+mysql> select Name, Date_of_admission from teacher ORDER BY Date_of_admission ASC;
++----------+-------------------+
+| Name     | Date_of_admission |
++----------+-------------------+
+| Sanjana  | 2022-01-08        |
+| Priya    | 2022-01-18        |
+| Sanjay   | 2022-02-08        |
+| Harshini | 2022-02-28        |
+| Abinesh  | 2023-01-05        |
+| Rajesh   | 2023-02-15        |
+| Dhivya   | 2023-05-11        |
+| Anu      | 2023-08-30        |
+| Santhosh | 2023-10-15        |
+| Raj      | 2023-12-25        |
++----------+-------------------+
+10 rows in set (0.00 sec)
+
+mysql> select Name, Department, Salary FROM teacher WHERE Gender = 'Male';
++----------+------------+----------+
+| Name     | Department | Salary   |
++----------+------------+----------+
+| Abinesh  | CS         | 15999.00 |
+| Rajesh   | Tamil      | 18999.00 |
+| Santhosh | Maths      | 15599.00 |
+| Raj      | Social     | 12999.00 |
+| Sanjay   | Commerce   | 16599.00 |
++----------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select COUNT(*) FROM teacher WHERE Salary < 10000;
++----------+
+| COUNT(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO Teacher (Teacher_ID, Name, Department, Date_of_Admission, Salary, Gender)
+    -> '
+    '> ;
+    '> errr(;
+    '> ;
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+;
+errr(;
+;
+'' at line 2
+mysql> insert into teacher (Teacher_id, Name, Department, Date_of_admission, Salary, Gender) values (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> insert into teacher values(8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> insert into teacher values(8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> INSERT INTO Teacher (Teacher_ID, Name, Department, Date_of_Admission, Salary, Gender) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> INSERT INTO teacher (Teacher_id, Name, Department, Date_of_admission, Salary, Gender) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'Male');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'Male')' at line 1
+mysql> INSERT INTO Teachertable (Teacher_ID, Name, Department, Date_of_Admission, Salary, Gender) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> INSERT INTO Teachertable (Teacher_ID int, Name varchar(50), Department varchar(50), Date_of_Admission date, Salary double(10,2), Gender varchar(25)) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int, Name varchar(50), Department varchar(50), Date_of_Admission date, Salary do' at line 1
+mysql> INSERT INTO Teachertable (Teacher_ID int, Name varchar(50), Department varchar(50), Date_of_Admission date, Salary double(10,2), Gender varchar(25)) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int, Name varchar(50), Department varchar(50), Date_of_Admission date, Salary do' at line 1
+mysql> INSERT INTO Teachertable (Teacher_ID, Name, Department, Date_of_Admission, Salary, Gender) VALUES (8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> insert into teacher 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into teacher values(8, 'Mersha', 'Computer', '2000-01-01',ÿ12000,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000,ÿ'M')' at line 1
+mysql> desc teacher;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| Teacher_id        | int          | YES  |     | NULL    |       |
+| Name              | varchar(50)  | YES  |     | NULL    |       |
+| Department        | varchar(50)  | YES  |     | NULL    |       |
+| Date_of_admission | date         | YES  |     | NULL    |       |
+| Salary            | double(10,2) | YES  |     | NULL    |       |
+| Gender            | varchar(25)  | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into teacher values(8, 'Mersha', 'Computer', '2000-01-01',ÿ12000.00,ÿ'M');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ÿ12000.00,ÿ'M')' at line 1
+mysql> insert into teacher values(8, 'Mersha', 'Computer', '2000-01-01', 12000, 'M');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from teacher where Salary = (select min(Salary) from teacher);
++------------+----------+------------+-------------------+----------+--------+
+| Teacher_id | Name     | Department | Date_of_admission | Salary   | Gender |
++------------+----------+------------+-------------------+----------+--------+
+|       5005 | Harshini | History    | 2022-02-28        | 10999.00 | Female |
++------------+----------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from teacher where Salary = (select min(Salary) from teacher where salary > (select min(Salary) from teacher))
+    -> ;
++------------+--------+------------+-------------------+----------+--------+
+| Teacher_id | Name   | Department | Date_of_admission | Salary   | Gender |
++------------+--------+------------+-------------------+----------+--------+
+|          8 | Mersha | Computer   | 2000-01-01        | 12000.00 | M      |
++------------+--------+------------+-------------------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from teacher;
++------------+----------+------------+-------------------+----------+--------+
+| Teacher_id | Name     | Department | Date_of_admission | Salary   | Gender |
++------------+----------+------------+-------------------+----------+--------+
+|       5001 | Abinesh  | CS         | 2023-01-05        | 15999.00 | Male   |
+|       5002 | Rajesh   | Tamil      | 2023-02-15        | 18999.00 | Male   |
+|       5003 | Santhosh | Maths      | 2023-10-15        | 15599.00 | Male   |
+|       5004 | Raj      | Social     | 2023-12-25        | 12999.00 | Male   |
+|       5005 | Harshini | History    | 2022-02-28        | 10999.00 | Female |
+|       5006 | Sanjay   | Commerce   | 2022-02-08        | 16599.00 | Male   |
+|       5007 | Sanjana  | Biology    | 2022-01-08        | 14999.00 | Female |
+|       5008 | Anu      | Acoounts   | 2023-08-30        | 21999.00 | Female |
+|       5009 | Dhivya   | CS         | 2023-05-11        | 25999.00 | Female |
+|       5010 | Priya    | Physics    | 2022-01-18        | 22099.00 | Female |
+|          8 | Mersha   | Computer   | 2000-01-01        | 12000.00 | M      |
++------------+----------+------------+-------------------+----------+--------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT Name FROM Teacher WHERE Department = 'History' AND Gender = 'F';
+Empty set (0.00 sec)
+
+mysql> SELECT Name FROM Teacher WHERE Department = 'History' AND Gender = 'Female';
++----------+
+| Name     |
++----------+
+| Harshini |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select AVG(SALARY) AS AverageSalary from teacher where Department = 'History';
++---------------+
+| AverageSalary |
++---------------+
+|  10999.000000 |
++---------------+
+1 row in set (0.01 sec)
+

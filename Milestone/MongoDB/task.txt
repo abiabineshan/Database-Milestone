@@ -1,0 +1,476 @@
+01. Write a MongoDB query to display at least 10 details of the documents of book_id, Btitle, authors in array and price for all the documents in the collection Bookstore.
+
+
+Answer:
+
+
+Bookstore> db.Bookstore.insertMany([{book_id:1,Btitle:"Book 1",authors:["Authors 1","Authors 2"],price:100}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd053bc8f82a93f46a86c') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:2,Btitle:"Book 2",authors:["Authors 3","Authors 4"],price:90}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd077bc8f82a93f46a86d') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:3,Btitle:"Book 3",authors:["Authors 5","Authors 6"],price:50}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd08dbc8f82a93f46a86e') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:4,Btitle:"Book 4",authors:["Authors 7","Authors 8"],price:70}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd0a4bc8f82a93f46a86f') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:5,Btitle:"Book 5",authors:["Authors 9","Authors 10"],price:40}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd0b9bc8f82a93f46a870') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:6,Btitle:"Book 6",authors:["Authors 11","Authors 12"],price:90}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd0cabc8f82a93f46a871') }
+}
+Bookstore>  db.Bookstore.insertMany([{book_id:7,Btitle:"Book 7",authors:["Authors 13","Authors 14"],price:100}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd0e8bc8f82a93f46a872') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:8,Btitle:"Book 8",authors:["Authors 15","Authors 16"],price:50}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd136bc8f82a93f46a873') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:9,Btitle:"Book 9",authors:["Authors 17","Authors 18"],price:80}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd846bc8f82a93f46a874') }
+}
+Bookstore> db.Bookstore.insertMany([{book_id:10,Btitle:"Book 10",authors:["Authors 19","Authors 20"],price:40}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fd86cbc8f82a93f46a875') }
+}
+
+
+
+
+02. Write a MongoDB query to display the fields Btitle, authors and price but exclude the bookid for all the documents in the collection Bookstore.
+
+
+
+Answer:
+
+
+Bookstore> db.Bookstore.find({}, {_id: 0,Btitle: 1, authors: 1, price: 1 })
+[
+  {
+    Btitle: 'Book 1',
+    authors: [ 'Authors 1', 'Authors 2' ],
+    price: 100
+  },
+  {
+    Btitle: 'Book 2',
+    authors: [ 'Authors 3', 'Authors 4' ],
+    price: 90
+  },
+  {
+    Btitle: 'Book 3',
+    authors: [ 'Authors 5', 'Authors 6' ],
+    price: 50
+  },
+  {
+    Btitle: 'Book 4',
+    authors: [ 'Authors 7', 'Authors 8' ],
+    price: 70
+  },
+  {
+    Btitle: 'Book 5',
+    authors: [ 'Authors 9', 'Authors 10' ],
+    price: 40
+  },
+  {
+    Btitle: 'Book 6',
+    authors: [ 'Authors 11', 'Authors 12' ],
+    price: 90
+  },
+  {
+    Btitle: 'Book 7',
+    authors: [ 'Authors 13', 'Authors 14' ],
+    price: 100
+  },
+  {
+    Btitle: 'Book 8',
+    authors: [ 'Authors 15', 'Authors 16' ],
+    price: 50
+  },
+  {
+    Btitle: 'Book 9',
+    authors: [ 'Authors 17', 'Authors 18' ],
+    price: 80
+  },
+  {
+    Btitle: 'Book 10',
+    authors: [ 'Authors 19', 'Authors 20' ],
+    price: 40
+  }
+]
+
+
+
+3. Write a MongoDB query to display the first 3 books based on similar authors.
+
+
+Answer:
+
+
+
+Bookstore> db.Bookstore.find({}, {Btitle: 1, authors: 1 }).limit(3)
+[
+  {
+    _id: ObjectId('657fd053bc8f82a93f46a86c'),
+    Btitle: 'Book 1',
+    authors: [ 'Authors 1', 'Authors 2' ]
+  },
+  {
+    _id: ObjectId('657fd077bc8f82a93f46a86d'),
+    Btitle: 'Book 2',
+    authors: [ 'Authors 3', 'Authors 4' ]
+  },
+  {
+    _id: ObjectId('657fd08dbc8f82a93f46a86e'),
+    Btitle: 'Book 3',
+    authors: [ 'Authors 5', 'Authors 6' ]
+  }
+]
+
+
+
+4. Write a MongoDB query to find the book price more than 1500.
+
+
+Answer:
+
+
+Bookstore> db.Bookstore.find({ price: { $gt: 1500 } })
+[
+  {
+    _id: ObjectId('657fd053bc8f82a93f46a86c'),
+    book_id: 1,
+    Btitle: 'Book 1',
+    authors: [ 'Authors 1', 'Authors 2' ],
+    price: 2000
+  },
+  {
+    _id: ObjectId('657fd86cbc8f82a93f46a875'),
+    book_id: 10,
+    Btitle: 'Book 10',
+    authors: [ 'Authors 19', 'Authors 20' ],
+    price: 1565
+  }
+]
+
+
+
+
+5. Write a MongoDB query to find the book title who's price is more than 800 but less than 2000.
+
+
+
+Answer:
+
+
+Bookstore> db.Bookstore.find({ price: { $gt: 800, $lt: 2000 }})
+[
+  {
+    _id: ObjectId('657fd0b9bc8f82a93f46a870'),
+    book_id: 5,
+    Btitle: 'Book 5',
+    authors: [ 'Authors 9', 'Authors 10' ],
+    price: 1795
+  },
+  {
+    _id: ObjectId('657fd86cbc8f82a93f46a875'),
+    book_id: 10,
+    Btitle: 'Book 10',
+    authors: [ 'Authors 19', 'Authors 20' ],
+    price: 1565
+  }
+]
+
+
+
+6. Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns.
+
+
+
+Answer:
+
+
+
+Bookstore> db.Bookstore.find({}).sort({ Btitle: 1 })
+[
+  {
+    _id: ObjectId('657fd053bc8f82a93f46a86c'),
+    book_id: 1,
+    Btitle: 'Book 1',
+    authors: [ 'Authors 1', 'Authors 2' ],
+    price: 2000
+  },
+  {
+    _id: ObjectId('657fd86cbc8f82a93f46a875'),
+    book_id: 10,
+    Btitle: 'Book 10',
+    authors: [ 'Authors 19', 'Authors 20' ],
+    price: 1565
+  },
+  {
+    _id: ObjectId('657fd077bc8f82a93f46a86d'),
+    book_id: 2,
+    Btitle: 'Book 2',
+    authors: [ 'Authors 3', 'Authors 4' ],
+    price: 90
+  },
+  {
+    _id: ObjectId('657fd08dbc8f82a93f46a86e'),
+    book_id: 3,
+    Btitle: 'Book 3',
+    authors: [ 'Authors 5', 'Authors 6' ],
+    price: 50
+  },
+  {
+    _id: ObjectId('657fd0a4bc8f82a93f46a86f'),
+    book_id: 4,
+    Btitle: 'Book 4',
+    authors: [ 'Authors 7', 'Authors 8' ],
+    price: 70
+  },
+  {
+    _id: ObjectId('657fd0b9bc8f82a93f46a870'),
+    book_id: 5,
+    Btitle: 'Book 5',
+    authors: [ 'Authors 9', 'Authors 10' ],
+    price: 1795
+  },
+  {
+    _id: ObjectId('657fd0cabc8f82a93f46a871'),
+    book_id: 6,
+    Btitle: 'Book 6',
+    authors: [ 'Authors 11', 'Authors 12' ],
+    price: 90
+  },
+  {
+    _id: ObjectId('657fd0e8bc8f82a93f46a872'),
+    book_id: 7,
+    Btitle: 'Book 7',
+    authors: [ 'Authors 13', 'Authors 14' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fd136bc8f82a93f46a873'),
+    book_id: 8,
+    Btitle: 'Book 8',
+    authors: [ 'Authors 15', 'Authors 16' ],
+    price: 2895
+  },
+  {
+    _id: ObjectId('657fd846bc8f82a93f46a874'),
+    book_id: 9,
+    Btitle: 'Book 9',
+    authors: [ 'Authors 17', 'Authors 18' ],
+    price: 80
+  }
+]
+
+
+
+
+7.Write a MongoDB query to arrange the book name of the bookstore in descending order along with all the columns.
+
+
+
+Answer:
+
+
+
+Bookstore> db.Bookstore.find({}).sort({ Btitle: -1 })
+[
+  {
+    _id: ObjectId('657fd846bc8f82a93f46a874'),
+    book_id: 9,
+    Btitle: 'Book 9',
+    authors: [ 'Authors 17', 'Authors 18' ],
+    price: 80
+  },
+  {
+    _id: ObjectId('657fd136bc8f82a93f46a873'),
+    book_id: 8,
+    Btitle: 'Book 8',
+    authors: [ 'Authors 15', 'Authors 16' ],
+    price: 2895
+  },
+  {
+    _id: ObjectId('657fd0e8bc8f82a93f46a872'),
+    book_id: 7,
+    Btitle: 'Book 7',
+    authors: [ 'Authors 13', 'Authors 14' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fd0cabc8f82a93f46a871'),
+    book_id: 6,
+    Btitle: 'Book 6',
+    authors: [ 'Authors 11', 'Authors 12' ],
+    price: 90
+  },
+  {
+    _id: ObjectId('657fd0b9bc8f82a93f46a870'),
+    book_id: 5,
+    Btitle: 'Book 5',
+    authors: [ 'Authors 9', 'Authors 10' ],
+    price: 1795
+  },
+  {
+    _id: ObjectId('657fd0a4bc8f82a93f46a86f'),
+    book_id: 4,
+    Btitle: 'Book 4',
+    authors: [ 'Authors 7', 'Authors 8' ],
+    price: 70
+  },
+  {
+    _id: ObjectId('657fd08dbc8f82a93f46a86e'),
+    book_id: 3,
+    Btitle: 'Book 3',
+    authors: [ 'Authors 5', 'Authors 6' ],
+    price: 50
+  },
+  {
+    _id: ObjectId('657fd077bc8f82a93f46a86d'),
+    book_id: 2,
+    Btitle: 'Book 2',
+    authors: [ 'Authors 3', 'Authors 4' ],
+    price: 90
+  },
+  {
+    _id: ObjectId('657fd86cbc8f82a93f46a875'),
+    book_id: 10,
+    Btitle: 'Book 10',
+    authors: [ 'Authors 19', 'Authors 20' ],
+    price: 1565
+  },
+  {
+    _id: ObjectId('657fd053bc8f82a93f46a86c'),
+    book_id: 1,
+    Btitle: 'Book 1',
+    authors: [ 'Authors 1', 'Authors 2' ],
+    price: 2000
+  }
+]
+
+
+
+
+08. Write a MongoDB query to know whether the author in the authors list.
+
+
+
+Answer:
+
+
+Bookstore> db.Booksstore.find({authors:["Authors 3","Authors 4"]})
+[
+  {
+    _id: ObjectId('657fd077bc8f82a93f46a86d'),
+    book_id: 2,
+    Btitle: 'Book 2',
+    authors: [ 'Authors 3', 'Authors 4' ],
+    price: 90
+  }
+]
+
+
+
+09. Write a MongoDB query to update & increase the book price Rs.500 in all book name as "Mon "MongoDB Practice".
+
+
+
+Answer:
+
+
+Bookstore> db.Bookstore.updateMany({Btitle:"MongoDB Practice"},{$inc:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+Bookstore> db.Bookstore.updateMany({},{$inc:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 10,
+  modifiedCount: 10,
+  upsertedCount: 0
+}
+
+
+
+
+10. Write a MongoDB query to use Update modifiers (Svet, Spush, Spall, SsetOnInsert, Supsert) in bookstore.
+
+
+
+Answer:
+
+
+
+Bookstore> db.Bookstore.update({book_id:1},{$set:{price:1000}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Bookstore> db.Bookstore.update({book_id:2},{$push:{authors:"Authors 21"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Bookstore> db.Bookstore.update({book_id:3},{$pull:{authors:"Authors 15"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+Bookstore> db.Bookstore.update({book_id:4},{$set:{stock:50},$setOnInsert:{publicationYear:2022}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Bookstore> db.Bookstore.update({book_id:5},{$set:{stock:30}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+
+
+
